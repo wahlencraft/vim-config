@@ -472,6 +472,13 @@ if !exists("g:tex_no_math")
  call TexNewMathZone("C","equation",1)
  call TexNewMathZone("D","math",1)
 
+" AMS Math Zones:
+ call TexNewMathZone("E","gather",1)
+ call TexNewMathZone("F","multline",1)
+ call TexNewMathZone("G","align",1)
+ call TexNewMathZone("H","alignat",1)
+ call TexNewMathZone("I","flalign",1)
+
  " Inline Math Zones: {{{2
  if s:tex_fast =~# 'M'
   if has("conceal") && &enc == 'utf-8' && s:tex_conceal =~# 'd'
