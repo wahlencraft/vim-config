@@ -187,7 +187,7 @@ let g:colors_name = "custom"
 
 
 " Use gui colors if loaded with supported color. Otherwise fall back to cterm
-autocmd FileType sh,cpp,c,arm,python,lua,tex setlocal termguicolors
+autocmd FileType sh,cpp,c,arm,python,lua setlocal termguicolors
 
 "==============================================================================
 " Internal Terminal
