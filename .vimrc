@@ -3,6 +3,7 @@ set nocompatible
 
 " Pick a leader key
 let mapleader = ","
+let maplocalleader = ","
 
 " Don't autocomplete unless unique.
 set wildmode=longest
@@ -25,7 +26,7 @@ set foldlevel=99
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
-set nowrap  " Let long lines continue out of screen
+set wrap  " Let long lines continue out of screen
 set textwidth=0 " Dont autowrap
 "set formatoptions=tcqrn1
 set noshiftround
@@ -116,8 +117,10 @@ Plug 'wincent/terminus'
 Plug 'airblade/vim-gitgutter'
 Plug 'fladson/vim-kitty'
 Plug 'ap/vim-css-color'
+"Plug 'gko/vim-coloresque'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
+Plug 'lervag/vimtex'
 call plug#end()
 
 " For plugins to load correctly
@@ -127,10 +130,17 @@ filetype plugin indent on
 nmap <leader>n <Plug>(GitGutterNextHunk)
 nmap <leader>N <Plug>(GitGutterPrevHunk)
 
-" Make gitguter recognize my config repos
-let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
-let g:gitgutter_git_args='--git-dir=$HOME/.cfg-vim --work-tree=$HOME'
+" vimtex
+let g:vimtex_view_method = 'zathura'
 
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+" Make gitguter recognize my config repos
+"let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
+"let g:gitgutter_git_args='--git-dir=$HOME/.cfg-vim --work-tree=$HOME'
+"
 "===============================================================================
 " Visual
 "===============================================================================
