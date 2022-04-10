@@ -166,6 +166,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 syntax on
 set background=dark
 colorscheme custom
+au BufNewFile,BufRead *.m colorscheme matlab
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 
 " Encoding

@@ -34,6 +34,7 @@ syn match matlabLineContinuation	"\.\{3}"
 
 " String
 syn region matlabString			start=+'+ end=+'+	oneline
+syn region matlabStringDouble	start=+"+ end=+"+	oneline
 
 " If you don't like tabs
 syn match matlabTab			"\t"
@@ -55,6 +56,7 @@ syn match matlabTransposeOperator	"[])a-zA-Z0-9.]'"lc=1
 syn match matlabSemicolon		";"
 
 syn match matlabComment			"%.*$"	contains=matlabTodo,matlabTab
+syn match matlabHeaderComment		"%%.*$"	contains=matlabTodo,matlabTab
 syn region matlabBlockComment        start=+%{+    end=+%}+ contains=matlabBlockComment
 
 
@@ -324,6 +326,7 @@ if version >= 508 || !exists("did_matlab_syntax_inits")
   HiLink matlabConditional		Conditional
   HiLink matlabRepeat			Repeat
   HiLink matlabTodo			Todo
+  HiLink matlabStringDouble	    matlabString
   HiLink matlabString			String
   HiLink matlabDelimiter		Identifier
   HiLink matlabTransposeOther		Identifier
@@ -333,6 +336,7 @@ if version >= 508 || !exists("did_matlab_syntax_inits")
   HiLink matlabImplicit			matlabStatement
   HiLink matlabStatement		Statement
   HiLink matlabSemicolon		SpecialChar
+  HiLink matlabHeaderComment	Comment
   HiLink matlabComment			Comment
   HiLink matlabBlockComment		Comment
   HiLink matlabImport			Include
