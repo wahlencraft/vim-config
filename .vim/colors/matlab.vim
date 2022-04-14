@@ -19,11 +19,12 @@ let colors_name = "matlab"
 "hi Normal guifg=#000000 guibg=#ffffff
 hi Normal guifg=#000000 guibg=#fcfcdc
 
-hi Visual guifg=#ff0000 guibg=#0000ff
+hi Visual guibg=#335ea8 guifg=#ffffff 
+hi Visual guifg=#335ea8 guibg=#ffffff 
 "hi Cursor guifg=#ff0000 guibg=#0000ff
 hi OverLength guibg=#ffffff
 "
-hi Search guifg=#ff0000 guibg=#0000ff
+hi Search guibg=#ffffff guifg=#335ea8
 "hi MatchParen guifg=#ff0000 guibg=#0000ff
 "
 hi LineNr guifg=#000000 guibg=#ebe9ed
@@ -50,7 +51,7 @@ hi Function guifg=#000000
 "
 hi Number guifg=#000000
 hi Boolean guifg=#ff0000 guibg=#0000ff
-hi Constant guifg=#ff0000 guibg=#0000ff
+hi Constant guifg=#444444 gui=bold cterm=bold
 "
 hi String guifg=#aa04f9
 hi SpecialChar guifg=#000000
