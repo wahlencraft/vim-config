@@ -137,6 +137,13 @@ if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
 
+" Matlab
+source $VIMRUNTIME/macros/matchit.vim
+autocmd BufEnter *.m    compiler mlint
+" if mlint doesnt't work try:
+" sudo ln -s <MATLABPATH>/bin/glnx86/mlint mlint
+" matlab is probably installed in /usr/local
+
 " Make gitguter recognize my config repos
 "let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
 "let g:gitgutter_git_args='--git-dir=$HOME/.cfg-vim --work-tree=$HOME'
@@ -159,6 +166,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 syntax on
 set background=dark
 colorscheme custom
+au BufNewFile,BufRead *.m colorscheme matlab
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 
 " Encoding
