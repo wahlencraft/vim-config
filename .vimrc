@@ -127,8 +127,8 @@ call plug#end()
 filetype plugin indent on
 
 " Gitgutter keymaps
-nmap <leader>n <Plug>(GitGutterNextHunk)
-nmap <leader>N <Plug>(GitGutterPrevHunk)
+nmap <leader>hn <Plug>(GitGutterNextHunk)
+nmap <leader>hN <Plug>(GitGutterPrevHunk)
 
 " vimtex
 let g:vimtex_view_method = 'zathura'
