@@ -281,6 +281,9 @@ hi OverLength   ctermfg=red         guibg=#592929
 hi NonText      ctermfg=DarkGray    guifg=#444444
 hi SpecialKey   ctermfg=DarkGrey    guifg=#444444
 hi! link SignColumn     background
+hi GitGutterAdd    guifg=#226622
+hi GitGutterChange guifg=#999900
+hi GitGutterDelete guifg=#662222
 
 "==============================================================================
 " Vim
