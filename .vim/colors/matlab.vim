@@ -19,15 +19,20 @@ let colors_name = "matlab"
 "hi Normal guifg=#000000 guibg=#ffffff
 hi Normal guifg=#000000 guibg=#fcfcdc
 
-hi Visual guibg=#335ea8 guifg=#ffffff 
-hi Visual guifg=#335ea8 guibg=#ffffff 
-"hi Cursor guifg=#ff0000 guibg=#0000ff
+hi Visual guifg=#335ea8 guibg=#ffffff
+hi Visual guibg=#ffffff guifg=#335ea8
+
 hi OverLength guibg=#ffffff
 "
 hi Search guibg=#ffffff guifg=#335ea8
 "hi MatchParen guifg=#ff0000 guibg=#0000ff
 "
 hi LineNr guifg=#000000 guibg=#ebe9ed
+hi SignColumn guibg=#ebe9ed
+hi GitGutterAdd    guifg=#009900 guibg=#ebe9ed
+hi GitGutterChange guifg=#bbbb00 guibg=#ebe9ed
+hi GitGutterChange guifg=#777700 guibg=#ebe9ed
+hi GitGutterDelete guifg=#ff2222 guibg=#ebe9ed
 "hi Title guifg=#ff0000 guibg=#0000ff
 hi Underlined guifg=#ff0000 guibg=#0000ff
 
@@ -68,7 +73,7 @@ hi NonText guifg=#ebe9ed
 hi Comment guifg=#028009
 hi matlabHeaderComment guifg=#028009 gui=bold cterm=bold
 hi SpecialComment guifg=#ff0000 guibg=#0000ff
-hi Todo guifg=#ff0000 guibg=#0000ff
+hi Todo guifg=#fcfcdc guibg=#028009
 
 
 hi PreProc guifg=#ff0000 guibg=#0000ff
