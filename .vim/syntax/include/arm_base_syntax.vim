@@ -20,6 +20,7 @@ syn match armNumber     "\%(\d\+\.\d*\|\d*\.\d\+\)\%([eE]\?[-+]\?\d\+\)\?\>"
 
 " Comments
 syn region armComment   start="//\|@" end="$" contains=armTodo
+syn region armComment   start=";\|@" end="$" contains=armTodo
 " syn region armComment   start="^#\|//\|@" end="$" contains=armTodo
 syn region armComment   start="/\*"   end="\*/" contains=armTodo
 

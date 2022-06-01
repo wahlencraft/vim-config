@@ -47,7 +47,7 @@ if version >= 508 || !exists("did_armv4_syntax_inits")
   HiLink armCPreProc        Identifier
 
   HiLink armRegister        Type
-  HiLink armv4Instructions  Keyword
+  HiLink armv4Instructions  Normal
 
   HiLink armTodo            Todo
   delcommand HiLink

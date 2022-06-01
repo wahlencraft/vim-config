@@ -60,7 +60,7 @@ if version >= 508 || !exists("did_arm_syntax_inits")
 
   HiLink armRegister        Variable
   HiLink armv6Register      Variable
-  HiLink armv6Instructions  Type
+  HiLink armv6Instructions  Normal
 
   HiLink armTodo            Todo
   delcommand HiLink

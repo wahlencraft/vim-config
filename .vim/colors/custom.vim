@@ -187,7 +187,7 @@ let g:colors_name = "custom"
 
 
 " Use gui colors if loaded with supported color. Otherwise fall back to cterm
-autocmd FileType sh,cpp,c,arm,python,lua setlocal termguicolors
+autocmd FileType sh,cpp,c,arm,python,lua,vim setlocal termguicolors
 
 "==============================================================================
 " Internal Terminal
@@ -373,7 +373,6 @@ hi link cppOperator     cCustomFunc
 " ARM Assembly
 "==============================================================================
 call s:HL('gasDirective', s:clr.dark_yellow)
-call s:HL('armv6Instructions', s:clr.light_green)
 call s:HL('armRegister', s:clr.gray)
 call s:HL('armNumericOp', s:clr.white)
 
