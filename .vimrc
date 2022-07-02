@@ -88,6 +88,9 @@ map <leader>q gqip
 " Copy to clipboard
 set clipboard=unnamedplus
 
+" Create a C-style header-guard based the name of the current file
+command CreateHeaderGuard :let @+ = toupper(expand("%:t:r")) | :norm ggO#ifndef <ESC>pa_H_<RETURN>#define <ESC>pa_H_<ENTER><ESC>GGo#endif  // <ESC>pa_H_<RETURN><ESC><C-O><C-O><C-O>
+
 "=============================================================================
 " Environment specific settings
 "=============================================================================
@@ -117,7 +120,6 @@ Plug 'wincent/terminus'
 Plug 'airblade/vim-gitgutter'
 Plug 'fladson/vim-kitty'
 Plug 'ap/vim-css-color'
-"Plug 'gko/vim-coloresque'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lervag/vimtex'
