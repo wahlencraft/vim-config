@@ -495,7 +495,7 @@ if !exists("g:tex_no_math")
   syn region texMathZoneZ	matchgroup=texStatement start="\\ensuremath\s*{"	matchgroup=texStatement	end="}"		end="%stopzone\>"	contains=@texMathZoneGroup
  endif
 
- syn match texMathOper		"[_^=]" contained
+ syn match texMathOper		"[_^=+-/]" contained
 
  " Text Inside Math Zones: {{{2
  if s:tex_fast =~# 'M'
