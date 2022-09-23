@@ -519,3 +519,22 @@ call s:HLBold('texMath', s:clr.gruvbox_blue)
 call s:HLBold('texMathMatcher', s:clr.gruvbox_red)
 call s:HLBold('texMathOper', s:clr.gruvbox_white)
 
+"==============================================================================
+" VHDL
+"==============================================================================
+
+call s:HLBold('vhdlLibrary', s:clr.dark_yellow)
+call s:HL('vhdlSpecial', s:clr.light_green)
+call s:HLBold('vhdlStatement', s:clr.yellow)
+call s:HL('vhdlCharacter', s:clr.blue)
+call s:HL('vhdlString', s:clr.blue)
+hi link vhdlVector vhdlString
+call s:HL('vhdlComment', s:clr.dark_gray)
+call s:HL('vhdlNumber', s:clr.light_blue)
+hi link vhdlBoolean vhdlNumber
+hi link vhdlTime vhdlNumber
+call s:HLBold('vhdlType', s:clr.dark_magenta)
+hi link vhdlOperator vhdlSpecial
+call s:HL('vhdlGlobal', s:clr.dark_red)
+call s:HL('vhdlAttribute', s:clr.gray)
+
