@@ -1,3 +1,67 @@
+"==============================================================================
+" Plugins
+"==============================================================================
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" Install vim-plug
+" Plugins
+call plug#begin()
+Plug 'wincent/terminus'
+Plug 'airblade/vim-gitgutter'
+Plug 'fladson/vim-kitty'
+Plug 'ap/vim-css-color'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+Plug 'lervag/vimtex'
+call plug#end()
+
+" For plugins to load correctly
+filetype plugin indent on
+
+" Gitgutter keymaps
+nmap <leader>hn <Plug>(GitGutterNextHunk)
+nmap <leader>hN <Plug>(GitGutterPrevHunk)
+
+" vimtex
+let g:vimtex_view_method = 'zathura'
+
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+" Matlab
+source $VIMRUNTIME/macros/matchit.vim
+autocmd BufEnter *.m    compiler mlint
+" if mlint doesnt't work try:
+" sudo ln -s <MATLABPATH>/bin/glnx86/mlint mlint
+" matlab is probably installed in /usr/local
+
+" Make gitguter recognize my config repos
+"let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
+"let g:gitgutter_git_args='--git-dir=$HOME/.cfg-vim --work-tree=$HOME'
+
+"=============================================================================
+" Environment specific settings
+"=============================================================================
+
+function! SetupEnvironment()
+    let l:path = expand('%:p')
+    if l:path =~# '\/.*\/pico-alarm-clock\/.*\>'
+        setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    endif
+endfunction
+
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+
+autocmd BufWritePost */Xresources !xrdb ~/.config/Xresources
+
+
+"==============================================================================
+" Misc
+"==============================================================================
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -39,7 +103,7 @@ set virtualedit+=block
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Cursor motion
-set scrolloff=3
+set scrolloff=5
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
@@ -88,71 +152,21 @@ map <leader>q gqip
 " Copy to clipboard
 set clipboard=unnamedplus
 
-" Create a C-style header-guard based the name of the current file
-command CreateHeaderGuard :let @+ = toupper(expand("%:t:r")) | :norm ggO#ifndef <ESC>pa_H_<RETURN>#define <ESC>pa_H_<ENTER><ESC>GGo#endif  // <ESC>pa_H_<RETURN><ESC><C-O><C-O><C-O>
-
-"=============================================================================
-" Environment specific settings
-"=============================================================================
-
-function! SetupEnvironment()
-    let l:path = expand('%:p')
-    if l:path =~# '\/.*\/pico-alarm-clock\/.*\>'
-        setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-    endif
-endfunction
-
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
-
-autocmd BufWritePost */Xresources !xrdb ~/.config/Xresources
+" Don't automatically insert comment leader on new lines
+autocmd BufNewFile,BufRead * setlocal formatoptions-=o
 
 "==============================================================================
-" Plugins
+" Custom Commands
 "==============================================================================
 
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
+" Create a C-style header-guard based the name of the current filename
+command CreateHeaderGuard :let @+ = toupper(expand("%:t:r")) | :norm ggO#ifndef <ESC>pa_H_<RETURN>#define <ESC>pa_H_<ESC>GGo#endif  // <ESC>pa_H_<ESC>o<ESC><C-O><C-O><C-O>
 
-" Install vim-plug
-" Plugins
-call plug#begin()
-Plug 'wincent/terminus'
-Plug 'airblade/vim-gitgutter'
-Plug 'fladson/vim-kitty'
-Plug 'ap/vim-css-color'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
-Plug 'lervag/vimtex'
-call plug#end()
+command CreateClassBoilerplate :norm "nyiwccclass <ESC>"npa {<ESC>opublic:<ESC><<j"np>>A();<ESC>o<ESC>oprivate:<ESC><<o};<RETURN><ESC>
 
-" For plugins to load correctly
-filetype plugin indent on
-
-" Gitgutter keymaps
-nmap <leader>hn <Plug>(GitGutterNextHunk)
-nmap <leader>hN <Plug>(GitGutterPrevHunk)
-
-" vimtex
-let g:vimtex_view_method = 'zathura'
-
-if empty(v:servername) && exists('*remote_startserver')
-  call remote_startserver('VIM')
-endif
-
-" Matlab
-source $VIMRUNTIME/macros/matchit.vim
-autocmd BufEnter *.m    compiler mlint
-" if mlint doesnt't work try:
-" sudo ln -s <MATLABPATH>/bin/glnx86/mlint mlint
-" matlab is probably installed in /usr/local
-
-" Make gitguter recognize my config repos
-"let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
-"let g:gitgutter_git_args='--git-dir=$HOME/.cfg-vim --work-tree=$HOME'
-"
-"===============================================================================
+"==============================================================================
 " Visual
-"===============================================================================
+"==============================================================================
 
 set ruler " Show file stats
 set number " Show line numbers
@@ -187,3 +201,4 @@ map <leader>l :set list!<CR> " Toggle invisible characters
 " Highligt code that goes over the 80 column limit
 match OverLength /\%>79v.\+/
 autocmd WinEnter * match OverLength /\%>79v.\+/
+
