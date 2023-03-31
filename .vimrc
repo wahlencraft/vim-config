@@ -10,11 +10,11 @@ filetype off
 call plug#begin()
 Plug 'wincent/terminus'
 Plug 'airblade/vim-gitgutter'
-Plug 'fladson/vim-kitty'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lervag/vimtex'
+Plug 'Scuilion/markdown-drawer'
 call plug#end()
 
 " For plugins to load correctly
@@ -30,6 +30,22 @@ let g:vimtex_view_method = 'zathura'
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
+
+" Markdown Drawer
+let g:markdrawer_prefix = " " 
+let g:markdrawer_goto = "o"
+let g:markdrawerDelete = "D"
+let g:markdrawer_width = "45"
+let g:markdrawer_paste_below = "p"
+let g:markdrawer_increase = "+"
+let g:markdrawer_decrease = "-"
+let g:markdrawer_to_delete_color = "Red"
+
+let g:markdrawer_drawer_max_levels = 4 " max levels to display
+"let g:markdrawer_toc = 'index' " displays as a TOC
+"let g:markdrawer_toc = 'full_index' " displays as a TOC, no index reset
+
+nnoremap <Leader>md :MarkDrawer<cr>
 
 " Matlab
 source $VIMRUNTIME/macros/matchit.vim
