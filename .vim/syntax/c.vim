@@ -38,8 +38,8 @@ syn match    cCustomFunc     "\w\+\s*(" contains=cCustomParen
 syn match    cCustomScope    "::"
 syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
 
-syn match    cMember         '\.\zs\s*\h\w*' contains=cCustomFunc
-syn match    cMember         '\->\zs\s*\h\w*' contains=cCustomFunc
+syn match    cMember         '\.\zs\h\w*' contains=cCustomFunc
+syn match    cMember         '\->\zs\h\w*' contains=cCustomFunc
 
 hi def link cCustomFunc  Function
 hi def link cCustomClass Function

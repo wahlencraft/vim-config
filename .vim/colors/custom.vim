@@ -317,19 +317,20 @@ call s:HL('cType', s:clr.light_green)
 call s:HL('cComment', s:clr.dark_gray)
 call s:HL('cRepeat', s:clr.white, s:clr.none, s:bold)
 call s:HL('cConstant', s:clr.magenta)
-call s:HL('cSpecial', s:clr.dark_magenta)
-call s:HL('cStatement', s:clr.dark_yellow)
+hi link cSpecial cConstant
+call s:HL('cStatement', s:clr.dark_gray, s:clr.none, s:bold)
 call s:HL('cCustomFunc', s:clr.light_blue)
 call s:HL('cCustomScope', s:clr.orange)
 call s:HL('cPreProc', s:clr.light_blue)
 call s:HL('cppContainer', s:clr.light_green2)
 call s:HL('cMember', s:clr.orange)
 call s:HL('cTodo', s:clr.black, s:clr.dark_yellow)
+call s:HL('cOperator', s:clr.cyan, s:clr.none, s:bold)
 
 hi link cTypeDef        cType
 hi link cStructure      cType
 hi link cStorageClass   cType
-hi link cString	        cConstant
+call s:HL('cString', s:clr.dark_magenta)
 hi link cCharacter      cConstant
 hi link cNumber	        cConstant
 hi link cFloat          cNumber
@@ -347,13 +348,17 @@ hi link cPreCondit      cPreProc
 " C++
 "==============================================================================
 
-" class typename template namespace
+" class, typename, template, namespace
 call s:HL('cppStructure', s:clr.orange, s:clr.none, s:bold)
-" public protected private
+" public, protected, private
 call s:HL('cppAccess', s:clr.orange)
-" new delete this friend using
-call s:HL('cppStatement', s:clr.dark_gray, s:clr.none, s:bold)
+" new, delete, this, friend, using, co_await, requires
+"call s:HL('cppStatement', s:clr.dark_gray, s:clr.none, s:bold)
+hi link cppStatement cStatement
+" mutable, constexpr, decltype, thread_local, consteval, continit
+hi link cppStorageClass cOperator
 
+" inline, virtual, explicit, export, override, final
 hi link cppModifier	    cType
 hi link cppType	        cType
 hi link cppNumber       cNumber
@@ -366,7 +371,6 @@ hi link cppOperator     cCustomFunc
 " cppOperator: and bitor or xor compl bitand and_eq or_eq xor_eq not not_eq
 " cppCast: "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"me=e-1
 " cppCast: "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*$"
-" cppStorageClass: mutable constexpr decltype thread_local
 " cppRawString:	matchgroup=cppRawStringDelimiter start=+\%(u8\|[uLU]\)\=R"\z([[:alnum:]_{}[\]#<>%:;.?*\+\-/\^&|~!=,"']\{,16}\)(+ end=+)\z1"+ contains=@Spell
 
 "==============================================================================
