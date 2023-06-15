@@ -12,6 +12,7 @@ let s:clr.yellow = ["#fce94f", "Yellow"]
 let s:clr.light_blue = ["#5fd7ff", "LightBlue"]
 let s:clr.cyan = ["#34e2e2", "Cyan"]
 let s:clr.light_green = ["#85fbac", "LightGreen"]
+let s:clr.green = ["#65db8c", "Green"]
 let s:clr.light_green2 = ["#63c98a", "LightGreen"]
 let s:clr.bright_green = ["#8ae234", "Green"]
 let s:clr.magenta = ["#9f759a", "Magenta"]
@@ -37,6 +38,8 @@ let s:clr.vibrant_gray = ["#767676", "DarkGray"]
 let s:clr.vibrant_yellow = ["#fffd00", "Yellow"]
 let s:clr.vibrant_purple = ["#cc56ec", "Magenta"]
 let s:clr.vibrant_dark_purple = ["#9923b9", "Magenta"]
+
+let s:clr.dark_blue = ["#538dcb", "DarkBlue"]
 
 " Soft dark background colors
 let s:clr.sdb_green = ["#113311", "DarkGreen"]
@@ -178,7 +181,7 @@ endfunction
 " LightGreen    #85fbac
 " Cyan          #34e2e2
 " Some green    #73c48f
-set background=dark
+"set background=dark
 hi clear
 if exists("syntax_on")
   syntax reset
@@ -274,16 +277,27 @@ map gm :call SynStack()<CR>
 "==============================================================================
 " Global settings
 "==============================================================================
-hi Normal       ctermfg=white       guifg=#d3d7cf
 hi LineNr       ctermfg=Gray        guifg=#444444
 hi Search                           guibg=#d3ab46
-hi OverLength   ctermfg=red         guibg=#592929
 hi NonText      ctermfg=DarkGray    guifg=#444444
 hi SpecialKey   ctermfg=DarkGrey    guifg=#444444
-hi! link SignColumn     background
 hi GitGutterAdd    guifg=#226622
 hi GitGutterChange guifg=#999900
 hi GitGutterDelete guifg=#662222
+
+if &background == "light"
+
+    call s:HL('Normal', s:clr.black)
+    call s:HLBack('OverLength', s:clr.red)
+
+elseif &background == "dark"
+
+    call s:HL('Normal', s:clr.white)
+    call s:HLBack('OverLength', s:clr.sdb_red)
+
+endif
+
+hi! link SignColumn     background
 
 "==============================================================================
 " Vim
@@ -313,24 +327,36 @@ call s:HLBack('DiffText', s:clr.sdb_orange)   " Changed text within a changed li
 "==============================================================================
 let c_gnu = 1
 
-call s:HL('cType', s:clr.light_green)
 call s:HL('cComment', s:clr.dark_gray)
-call s:HL('cRepeat', s:clr.white, s:clr.none, s:bold)
 call s:HL('cConstant', s:clr.magenta)
-hi link cSpecial cConstant
 call s:HL('cStatement', s:clr.dark_gray, s:clr.none, s:bold)
-call s:HL('cCustomFunc', s:clr.light_blue)
 call s:HL('cCustomScope', s:clr.orange)
-call s:HL('cPreProc', s:clr.light_blue)
 call s:HL('cppContainer', s:clr.light_green2)
 call s:HL('cMember', s:clr.orange)
 call s:HL('cTodo', s:clr.black, s:clr.dark_yellow)
 call s:HL('cOperator', s:clr.cyan, s:clr.none, s:bold)
+call s:HL('cString', s:clr.dark_magenta)
 
+if &background == "light"
+
+    call s:HL('cType', s:clr.green)
+    call s:HL('cCustomFunc', s:clr.blue)
+    call s:HL('cConditional', s:clr.dark_gray, s:clr.none, s:bold)
+    call s:HL('cPreProc', s:clr.dark_blue)
+
+elseif &background == "dark"
+
+    call s:HL('cType', s:clr.light_green)
+    call s:HL('cCustomFunc', s:clr.light_blue)
+    call s:HL('cConditional', s:clr.white, s:clr.none, s:bold)
+    call s:HL('cPreProc', s:clr.light_blue)
+
+endif
+
+hi link cSpecial cConstant
 hi link cTypeDef        cType
 hi link cStructure      cType
 hi link cStorageClass   cType
-call s:HL('cString', s:clr.dark_magenta)
 hi link cCharacter      cConstant
 hi link cNumber	        cConstant
 hi link cFloat          cNumber
@@ -338,7 +364,7 @@ hi link cBoolean        cConstant
 hi link cLabel          cStatement
 hi link cKeyword        cStatement
 hi link cException      cStatement
-hi link cConditional    cRepeat
+hi link cRepeat         cConditional
 hi link cCustomClass    Normal
 hi link cInclude        cPreProc
 hi link cDefine	        cPreProc
@@ -401,8 +427,6 @@ call s:HL('shSnglCase', s:clr.white)
 " Command options ↓
 call s:HL('shFunction', s:clr.white)
 call s:HL('shCommandSub', s:clr.white)
-call s:HL('shComment', s:clr.gray)
-call s:HL('shConditional', s:clr.white)
 " shCtrlSeq		Special
 " shExprRegion		Delimiter
 "hi link shFunctionKey   Normal
@@ -417,6 +441,14 @@ call s:HL('shSpecial', s:clr.black)
 " shSpecialNoZS		shSpecial
 call s:HL('shStatement', s:clr.orange)
 call s:HL('shString', s:clr.vibrant_gray)
+
+if &background == "light"
+    call s:HL('shComment', s:clr.dark_gray)
+    call s:HL('shConditional', s:clr.black)
+elseif &background == "dark"
+    call s:HL('shComment', s:clr.gray)
+    call s:HL('shConditional', s:clr.white)
+endif
 
 hi link shTodo cTodo
 hi link shAlias      shSetList

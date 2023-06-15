@@ -194,9 +194,28 @@ highlight! link SignColumn LineNr
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" Turn on syntax highlighting
+function! AreFilesSame(file1, file2)
+  let contents1 = readfile(a:file1)
+  let contents2 = readfile(a:file2)
+
+  return join(contents1) == join(contents2)
+endfunction
+
+" Syntax highlighting
 syntax on
-set background=dark
+let conffile = $HOME . '/.config/Xresources'
+let lmfile = $HOME . '/.config/Xresources_light'
+let dmfile = $HOME . '/.config/Xresources_dark'
+
+if AreFilesSame(conffile, lmfile)
+    set background=light
+elseif AreFilesSame(conffile, dmfile)
+    set background=dark
+else
+    " Backup mode is dark
+    set background=dark
+endif
+
 colorscheme custom
 au BufNewFile,BufRead *.m colorscheme matlab
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
