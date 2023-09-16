@@ -284,6 +284,7 @@ hi SpecialKey   ctermfg=DarkGrey    guifg=#444444
 hi GitGutterAdd    guifg=#226622
 hi GitGutterChange guifg=#999900
 hi GitGutterDelete guifg=#662222
+call s:HLBack('Folded', s:clr.dark_gray)
 
 if &background == "light"
 

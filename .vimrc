@@ -13,7 +13,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
-Plug 'lervag/vimtex'
 Plug 'Scuilion/markdown-drawer'
 call plug#end()
 
@@ -24,12 +23,9 @@ filetype plugin indent on
 nmap <leader>hn <Plug>(GitGutterNextHunk)
 nmap <leader>hN <Plug>(GitGutterPrevHunk)
 
-" vimtex
-let g:vimtex_view_method = 'zathura'
-
-if empty(v:servername) && exists('*remote_startserver')
-  call remote_startserver('VIM')
-endif
+" Vim-Latex-Suite
+let g:Tex_CompileRule_dvi = 'latex --src-specials -interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
 
 " Markdown Drawer
 let g:markdrawer_prefix = " " 
