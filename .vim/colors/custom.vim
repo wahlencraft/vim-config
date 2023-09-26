@@ -94,7 +94,7 @@ function! s:HL(group, fg, ...)
     let histring = [ 'hi', a:group,
         \ 'guifg=' . fg[0], 'ctermfg=' . fg[1],
         \ 'guibg=' . bg[0], 'ctermbg=' . bg[1],
-        \ 'gui=' . emstr[:-1], 'cterm=' . emstr[:-1]
+        \ 'gui=' . emstr[:-1]
         \ ]
 
     " special

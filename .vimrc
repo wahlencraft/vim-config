@@ -187,8 +187,11 @@ set number " Show line numbers
 highlight! link SignColumn LineNr
 
 " Fix no colors in st
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+try
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+catch
+endtry
 
 function! AreFilesSame(file1, file2)
   let contents1 = readfile(a:file1)
@@ -224,8 +227,12 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 " Visualize invisible characters
-set listchars=tab:\ ▸\ ,trail:·,eol:¬,nbsp:⎵
-set list " To enable by default
+try
+    set listchars=tab:\ ▸\ ,trail:·,eol:¬,nbsp:⎵
+    set list " To enable by default
+catch
+    " If the machine does not support the special characters, do nothing
+endtry
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle invisible characters
 
