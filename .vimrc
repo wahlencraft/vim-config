@@ -1,3 +1,7 @@
+" Pick a leader key
+let mapleader = ","
+let maplocalleader = ","
+
 "==============================================================================
 " Plugins
 "==============================================================================
@@ -14,6 +18,8 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Scuilion/markdown-drawer'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " For plugins to load correctly
@@ -26,6 +32,7 @@ nmap <leader>hN <Plug>(GitGutterPrevHunk)
 " Vim-Latex-Suite
 let g:Tex_CompileRule_dvi = 'latex --src-specials -interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_DefaultTargetFormat ='pdf'
 
 " Markdown Drawer
 let g:markdrawer_prefix = " " 
@@ -42,6 +49,16 @@ let g:markdrawer_drawer_max_levels = 4 " max levels to display
 "let g:markdrawer_toc = 'full_index' " displays as a TOC, no index reset
 
 nnoremap <Leader>md :MarkDrawer<cr>
+
+" fzf
+" Open buffers
+nnoremap <leader>b <cmd>Buffers<cr>
+" Git files
+nnoremap <leader>f <cmd>GFiles<cr>
+" Files (from current directory)
+nnoremap <leader>F <cmd>Files<cr>
+" Files (from open file's directory)
+nnoremap <leader>l <cmd>Files %:h<cr>
 
 " Matlab
 source $VIMRUNTIME/macros/matchit.vim
@@ -76,10 +93,6 @@ autocmd BufWritePost */Xresources !xrdb ~/.config/Xresources
 
 " Don't try to be vi compatible
 set nocompatible
-
-" Pick a leader key
-let mapleader = ","
-let maplocalleader = ","
 
 " Don't autocomplete unless unique.
 set wildmode=longest
@@ -233,10 +246,7 @@ try
 catch
     " If the machine does not support the special characters, do nothing
 endtry
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle invisible characters
 
 " Highligt code that goes over the 80 column limit
 match OverLength /\%>79v.\+/
 autocmd WinEnter * match OverLength /\%>79v.\+/
-
